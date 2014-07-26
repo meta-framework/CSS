@@ -1,0 +1,67 @@
+/*-Default element style (use together with reset.css)-*/
+
+	/*Body*/
+	
+	body {
+			display: block;
+			position: absolute;
+			height: 100%;
+			width: 100%;
+/*
+			background-color: rgb(25,25,25);
+			overflow: hidden;
+*/
+			font-size: 1em;
+	}
+	
+	/*Tables*/
+
+	.element-table thead {
+			border-bottom: 0.1em solid black;
+			margin-bottom: 1em;
+			font-size: 1.25em;
+			line-height: 2em;
+	}
+	.element-table tbody {
+			border-bottom: 0.1em solid black;
+	}
+	.element-table > thead th {
+			line-height: 2em;
+			text-align: center;
+	}
+	.element-table > tbody td {
+			line-height: 2em;
+			text-align: left;
+	}
+	.element-table > tbody > tr:nth-child(2n - 1) {
+			background-color: #eeeeee;
+	}
+	.element-table > tbody > tr:nth-child(2n) {
+			background-color: #fefefe;
+	}
+
+	/*Links.*/
+	
+	a { cursor: pointer; text-decoration: none; font: inherit ; color: inherit ; }
+	
+	/*Forms.*/
+	
+	form textarea,
+	form input[type="text"],
+	form input[type="password"] {
+			overflow: auto;
+			/*Removes the overflow from 100% width textareas.*/
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			resize: none;
+			cursor: text;
+	}
+	
+	/*Buttons.*/
+
+	button,
+	input[type="submit"]
+	{
+		cursor: pointer;
+	}

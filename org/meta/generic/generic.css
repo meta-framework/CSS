@@ -1,0 +1,159 @@
+/*-Generic Style Classes.-*
+
+	/*--Generic Element Layout--*/
+	
+	.block { display: block; position: relative; }
+	.box { display: inline-block; position: absolute; top: 0; }
+	.table { display: table ; border-collapse: collapse; border-spacing: 0; }
+	/**
+	* The dimension of inline element's cannot be controlled directly. Height and vertical padding may be controlled indirectly hower using line-height and font-size if only text or another inline element is wrapped. Width flows bottom-up from calculation of the content's extent.
+	*/
+	.inline { display: inline; position: relative; }
+	.image { }
+	.clearfloat { clear: both; }
+	/**
+	* Generic text element layout.
+	* 
+	* In terms of best practice, specify as little as possible on the actual text elements. Text elements are supposed to be positioned inline wrapped inside a block level container which specifies most of the contained text element's general attributes (font size, line height, letter spacing, alignment, color, etc.). 
+	* Examples:
+	*	(1) header: <h1 class="block" style="line-height: 1.25em; font-size: 2em; font-family: serif; font-weight: bold;"><span class="text">{header text}</span></h1>
+	*	(2) paragraph: <div class="block"><p class="text">{paragraph text}</p></div>
+	* @link: https://developer.mozilla.org/de/docs/Web/CSS/line-height
+	*/
+	.text
+	{
+			display: inline;
+			position: relative;
+			line-height: inherit;
+			font-size: inherit;
+			color: inherit;
+			text-transform: inherit;
+			font-variant: inherit;
+			-moz-user-select: -moz-none;
+			cursor: default;
+	}
+	
+	/*--Blocks (layout components with relative position and bottom-up dimension calculation).--*/
+
+	.block.layout-wrapper { margin: 0; padding: 0; }
+	.block.layout-inline { display: inline-block; width: 0; height: 100% }
+	.block.layout-cover { height: 100%; width: 100%; }
+	.block.layout-cover-height { width: auto; height: 100%; }
+	.block.layout-cover-width { width: 100%; height: auto; }
+	.block.layout-align-center { margin-left: auto; margin-right: auto; }
+	.block.layout-align-right { margin-left: 0; margin-right: auto; }
+	.block.layout-align-right { margin-left: auto; margin-right: 0; }
+	.block.layout-overflow-horizontal { overflow-x: auto ; overflow: hidden ; }
+	.block.layout-overflow-vertical { overflow-y: auto ; overflow: hidden ; }
+	
+	.block.layout-text-container {
+		text-align: left;
+		line-height: 1.25em;
+	}
+	
+	.block.layout-text-container.layout-align-left { text-align: left; }
+	.block.layout-text-container.layout-align-right { text-align: right; }
+	.block.layout-text-container.layout-align-center { text-align: center; }
+
+	/**
+	* A column container layout.
+	*
+	* Basically this is the same as `.table.layout-blocktable` with a few dependent rule sets. A few notes on usage:
+	* (1) the elements of the column container to be used as columns are declared by adding the `.layout-column` class.
+	* (2) each column has to specify its `width` in order for the proportions and layout to be calculated correctly (e.g. in a proportional three column layout: 33.33% on the first and second, 33.34% on the right)
+	* (3) to prevent overlap specify the `left` property with the respective aggregate width perecentages of the preceding elements (this happens when a preceding column does not either contain a block element or text, e.g. if it contains only elements with `absolute` or `fixed` positioning)
+	*/
+	.block.layout-column-container {
+			display: table;
+			table-layout: fixed;
+			width: 100%;
+	}
+	.block.layout-column-container .layout-column:first-of-type { float: left; }
+	.block.layout-column-container .layout-column:last-of-type { float: right; }
+	.block.layout-column { display: inline-block; width: 0; height: 100%; margin: 0; padding: 0; } /*@note: copy of `.block.layout-inline` mixed in with `.block.layout-wrapper`; width has to be specified using percentage or explicit values.*/
+
+	/*Boxes (layout components with arbitrary position and top-down dimensional calculation)*/
+	
+	/*(...)*/
+		
+	/*Images.*/
+	
+	.image.background-cover {
+			background: url('*') no-repeat; /*@note To modify this for a given background: copy, rename (!) and replace the asterisk '*' with the desired background's image URL.*/
+			background-size: cover;
+			background-position: center center;
+			-ms-filter: 'progid:DXImageTransform.Microsoft.AlphaImageLoader(Src="*",SizingMethod=scale)';
+			filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(Src='*',SizingMethod=scale);
+	}
+
+	.image.layout-cover-width {
+		height: auto !important;
+		width: 100% !important;
+		margin-top: auto !important;
+		margin-bottom: auto !important;
+	}
+
+	.image.layout-cover-height {
+		height: 100% !important;
+		width: auto !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+	
+	/*Tables*/
+	
+	.table.layout-blocktable {
+			table-layout: fixed;
+			width: 100%;
+	}
+
+	.table tr {
+			display: table-row;
+	}
+	.table > thead th,
+	.table > tbody td {
+			display: table-cell;
+	}
+		
+	/*Text.*/
+
+	em.italic { font-style: italic; }
+	em.bold { font-weight: bold; }
+	em.underline { text-decoration: underline; }
+	em.overline { text-decoration: overline; }
+	em.strike { text-decoration: line-through; }
+	em.bigger { font-size: 1.25em; }
+	em.smaller { font-size: 0.75em; }
+
+	.text.format-bold { font-weight: bold; }
+	.text.format-italic { font-style: italic; }
+	.text.format-uppercase { text-transform: uppercase; }
+	.text.format-family-sfdefault { font-family: Tahoma, Verdana, Helvetica, Arial, sans-serif; }
+	.text.format-family-rmdefault { font-family: Georgia, Palatino, Garamond, Times, serif; }
+	.text.format-family-msdefault { font-family: Monaco, 'Courier New', Courier, monospace; }
+	.text.format-color-default { color: #191919; }
+
+	/**
+	* With 16px baseline font size this is equivalent to 8px font size.
+	*/
+	.text.format-size-tiny { font-size: 0.5em; }
+	/**
+	* With 16px baseline font size this is equivalent to 12px font size.
+	*/
+	.text.format-size-small { font-size: 0.75em; }
+	.text.format-size-normal { font-size: 1em; }
+	/**
+	* With 16px baseline font size this is equivalent to 20px font size.
+	*/
+	.text.format-size-medium { font-size: 1.25em; }
+	/**
+	* With 16px baseline font size this is equivalent to 24px font size.
+	*/
+	.text.format-size-large { font-size: 1.5em; }
+
+	/*Decorations*/
+	
+	.text.decoration-underline { text-decoration: underline; }
+	
+	.box.decoration-boxshadow,
+	.block.decoration-boxshadow { box-shadow: 0.2em 0.2em 0.5em #191919; }
