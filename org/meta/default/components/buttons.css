@@ -1,0 +1,6 @@
+.button.-rounded {
+	border-radius: .25em;
+}
+.button.-circled {
+	border-radius: 50%; text-align: center;
+}

@@ -4,7 +4,7 @@
         v2.0 | 20110126
         License: none (public domain)
 */
-
+	
         html, body, div, span, applet, object, iframe,
         h1, h2, h3, h4, h5, h6, p, blockquote, pre,
         a, abbr, acronym, address, big, cite, code,
@@ -54,6 +54,17 @@
 		/**
 		* @added
 		*/
-		
 		button,
 		input[type='button'] { padding: 0; cursor: pointer; background: none; border: none; }
+	
+		form textarea,
+		form input[type="text"],
+		form input[type="password"] {
+				overflow: auto;
+				/*Removes the overflow from 100% width textareas (in compliant browsers).*/
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				resize: none;
+				cursor: text;
+		}
